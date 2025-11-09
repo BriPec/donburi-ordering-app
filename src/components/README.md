@@ -7,18 +7,22 @@ Payment via **BDO / BPI / Maya / GCash** using QR + proof upload. Delivery booke
 
 ```bash
 npm install
-cp .env.example .env   # fill SUPABASE values
+cp .env.build .env   # create local env file
+# edit .env and fill real values
 npm run dev
 ```
 
 ## Environment
 
 ```
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-VITE_STORE_NAME="Ogata-ya San"
-VITE_STORE_PHONE="+63 9XX XXX XXXX"
+VITE_SUPABASE_URL="https://pbkpfdzxfqkoigvylyhy.supabase.co"
+VITE_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBia3BmZHp4ZnFrb2lndnlseWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5OTU1NDMsImV4cCI6MjA3NzU3MTU0M30.QuNFmagCTSthjGfarxcQa3XD0r9G6QUrH4Yg9aEzQgE"
+VITE_STORE_PHONE=+"639985890423"
+VITE_STORE_NAME="Ogata Ya San"
+RESEND_API_KEY="re_JwgB52BL_dtJuaHqwnTuQ54Vhresv4GA8"
 ```
+
+> Never commit real keys to README. Keep secrets in `.env` (gitignored) and in Vercel project settings.
 
 ## Mermaid Flow
 
