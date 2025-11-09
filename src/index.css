@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+:root {
+  --accent: #f97316;
+  /* Tailwind's orange-500 */
+  --accent-hover: #ea580c;
+  /* orange-600 */
+}
