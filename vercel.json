@@ -1,11 +1,1 @@
-{
-  "build": {
-    "env": {
-      "VITE_SUPABASE_URL": "@vite_supabase_url",
-      "VITE_SUPABASE_ANON_KEY": "@vite_supabase_anon_key",
-      "VITE_STORE_NAME": "@vite_store_name",
-      "VITE_STORE_PHONE": "@vite_store_phone",
-      "RESEND_API_KEY": "@resend_api_key"
-    }
-  }
-}
+{}
