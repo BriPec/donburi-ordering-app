@@ -240,10 +240,9 @@ export default function CheckoutForm({
         onChange={(e) => setForm({ ...form, payment: e.target.value })}
         className="border border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-lg p-2 w-full outline-none transition-all"
       >
-        <option value="BDO">BDO</option>
-        <option value="BPI">BPI</option>
-        <option value="MAYA">Maya</option>
-        <option value="GCASH">GCash</option>
+  <option value="BDO">BDO</option>
+  <option value="MAYA">Maya</option>
+  <option value="GCASH">GCash</option>
       </select>
 
       {/* === Payment Details === */}
@@ -257,34 +256,22 @@ export default function CheckoutForm({
             <>
               <p className="font-semibold text-gray-800">BDO Account</p>
               <p className="text-gray-600">Account Name: Nina May Calusin</p>
-              <p className="text-gray-600">
-                Account Number: [Your BDO Account #]
-              </p>
+              <p className="text-gray-600">Account Number: 007190098353</p>
             </>
           )}
-          {form.payment === "BPI" && (
-            <>
-              <p className="font-semibold text-gray-800">BPI Account</p>
-              <p className="text-gray-600">Account Name: Nina May Calusin</p>
-              <p className="text-gray-600">
-                Account Number: [Your BPI Account #]
-              </p>
-            </>
-          )}
+          {/* BPI option removed */}
           {form.payment === "MAYA" && (
             <>
               <p className="font-semibold text-gray-800">Maya</p>
               <p className="text-gray-600">Account Name: Nina May Calusin</p>
-              <p className="text-gray-600">Mobile Number: [Your Maya Number]</p>
+              <p className="text-gray-600">Mobile Number: 09952849906</p>
             </>
           )}
           {form.payment === "GCASH" && (
             <>
               <p className="font-semibold text-gray-800">GCash</p>
               <p className="text-gray-600">Account Name: Nina May Calusin</p>
-              <p className="text-gray-600">
-                Mobile Number: [Your GCash Number]
-              </p>
+              <p className="text-gray-600">Mobile Number: 09952849906</p>
             </>
           )}
         </div>
