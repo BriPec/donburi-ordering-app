@@ -121,7 +121,7 @@ export default function App() {
                 }}
                 className="bg-orange-500 text-white py-3 px-8 rounded-lg w-full font-semibold text-lg hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl"
               >
-                Continue Shopping
+                Continue Ordering
               </button>
             </div>
           </div>
