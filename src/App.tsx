@@ -7,6 +7,7 @@ import { Dialog, Transition } from "@headlessui/react";
 
 export default function App() {
   const [isCheckoutOpen, setCheckoutOpen] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
@@ -64,21 +65,68 @@ export default function App() {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all border border-orange-100">
-                  {/* <Dialog.Title
-                    as="h3"
-                    className="text-lg font-semibold leading-6 text-orange-500 mb-4 text-center"
-                  >
-                    Checkout Your Donburi 🍱
-                  </Dialog.Title> */}
-
-                  {/* ✅ CheckoutForm with close callback */}
-                  <CheckoutForm onClose={() => setCheckoutOpen(false)} />
+                  <CheckoutForm
+                    onClose={() => setCheckoutOpen(false)}
+                    onSuccess={() => {
+                      setCheckoutOpen(false);
+                      setShowSuccessModal(true);
+                    }}
+                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
+
+      {/* === Success Modal === */}
+      {showSuccessModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+          style={{ zIndex: 9999 }}
+        >
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+            <div className="text-center">
+              {/* Success Icon */}
+              <div className="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                <svg
+                  className="w-12 h-12 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+
+              {/* Success Message */}
+              <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                Order Placed Successfully!
+              </h3>
+              <p className="text-gray-600 mb-8 text-base">
+                Thank you for your order! We'll contact you soon to confirm
+                delivery via Lalamove.
+              </p>
+
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  window.location.href = "/";
+                }}
+                className="bg-orange-500 text-white py-3 px-8 rounded-lg w-full font-semibold text-lg hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl"
+              >
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

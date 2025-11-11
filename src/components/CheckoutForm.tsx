@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { useCart } from "../store/cart";
 import { supabase } from "../lib/supabase";
 
-export default function CheckoutForm({ onClose }: { onClose?: () => void }) {
+export default function CheckoutForm({
+  onClose,
+  onSuccess,
+}: {
+  onClose?: () => void;
+  onSuccess?: () => void;
+}) {
   const { items, total, clear } = useCart();
   const [loading, setLoading] = useState(false);
 
@@ -181,14 +187,10 @@ export default function CheckoutForm({ onClose }: { onClose?: () => void }) {
     // === Success behavior ===
     clear();
     setLoading(false);
-    alert(
-      "Order submitted successfully!\nWe’ll contact you soon for delivery."
-    );
 
+    // Close checkout modal and trigger success
     if (onClose) onClose();
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 1000);
+    if (onSuccess) onSuccess();
   };
 
   return (
@@ -244,17 +246,48 @@ export default function CheckoutForm({ onClose }: { onClose?: () => void }) {
         <option value="GCASH">GCash</option>
       </select>
 
-      {/* === QR Preview === */}
-      <div className="mt-2 text-center bg-orange-50 border border-orange-100 rounded-lg p-3">
-        <p className="text-sm font-medium text-gray-700 mb-2">
-          Scan to pay via{" "}
+      {/* === Payment Details === */}
+      <div className="mt-2 bg-orange-50 border border-orange-100 rounded-lg p-4">
+        <p className="text-sm font-medium text-gray-700 mb-3">
+          Send payment via{" "}
           <span className="text-orange-500 font-semibold">{form.payment}</span>
         </p>
-        <img
-          src={`/${form.payment.toLowerCase()}-qr.jpeg`}
-          alt={`${form.payment} QR`}
-          className="mx-auto w-48 rounded-lg border border-orange-200 shadow-sm"
-        />
+        <div className="bg-white rounded p-3 text-sm space-y-1">
+          {form.payment === "BDO" && (
+            <>
+              <p className="font-semibold text-gray-800">BDO Account</p>
+              <p className="text-gray-600">Account Name: Nina May Calusin</p>
+              <p className="text-gray-600">
+                Account Number: [Your BDO Account #]
+              </p>
+            </>
+          )}
+          {form.payment === "BPI" && (
+            <>
+              <p className="font-semibold text-gray-800">BPI Account</p>
+              <p className="text-gray-600">Account Name: Nina May Calusin</p>
+              <p className="text-gray-600">
+                Account Number: [Your BPI Account #]
+              </p>
+            </>
+          )}
+          {form.payment === "MAYA" && (
+            <>
+              <p className="font-semibold text-gray-800">Maya</p>
+              <p className="text-gray-600">Account Name: Nina May Calusin</p>
+              <p className="text-gray-600">Mobile Number: [Your Maya Number]</p>
+            </>
+          )}
+          {form.payment === "GCASH" && (
+            <>
+              <p className="font-semibold text-gray-800">GCash</p>
+              <p className="text-gray-600">Account Name: Nina May Calusin</p>
+              <p className="text-gray-600">
+                Mobile Number: [Your GCash Number]
+              </p>
+            </>
+          )}
+        </div>
       </div>
 
       {/* === Proof Upload === */}
@@ -283,7 +316,7 @@ export default function CheckoutForm({ onClose }: { onClose?: () => void }) {
       </button>
 
       <p className="text-xs text-gray-500 text-center">
-        🚚 Delivery will be booked via Lalamove. You’ll pay the delivery fee
+        🚚 Delivery will be booked via Lalamove. You'll pay the delivery fee
         directly to the rider upon arrival.
       </p>
     </form>
